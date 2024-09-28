@@ -34,21 +34,6 @@ The proposed evaluation method showed that:
 
 Further exploration can be done using **Transformer-based models** for style evaluation or optimizing the **CNN-based evaluation** by focusing on relevant features for style alone. Extending the dataset could enable a re-evaluation of **Frechet Inception Distance (FID)** for larger-scale projects.
 
-## Installation and Setup
-
-1. Clone the repository.
-    ```bash
-    git clone <repository_url>
-    ```
-2. Install the necessary dependencies.
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. Run the evaluation script.
-    ```bash
-    python evaluate.py
-    ```
-
 ## Appendix
 
 The project code is available in the repository, including implementations for generating masks, calculating evaluation metrics, and the Gradio-based GUI used for this project.
