@@ -3,13 +3,27 @@
 
 ## Project Overview
 
-This project focuses on evaluating the effectiveness of appearance transfer in generative models, particularly in terms of structure maintenance and artistic style transfer quality. The evaluation process addresses the limitations of traditional methods by introducing objective metrics that systematically measure both structural preservation and style consistency. The project implements a new evaluation method using segmentation models, such as **SAM2**, to analyze structure preservation through **Intersection over Union (IOU)** and **cosine similarity** between high-level features extracted from **CLIP**. The artistic style transfer is evaluated using **Gram matrices** derived from **VGG-19**.
+This project addresses two critical challenges in the field of Cross-Image Attention for Zero-Shot Appearance Transfer: color saturation issues and the lack of objective evaluation metrics. The research explores innovative solutions to these problems through a two-pronged approach.
 
 ## Problem Statement
 
-Existing methods for appearance transfer often produce oversaturated results and rely on subjective evaluations, making it difficult to quantify performance across different models. To overcome these issues, this project proposes an **Evaluating Appearance Transfer** metric, which utilizes segmentation models and feature-based evaluation techniques to provide an automated, quantitative measure of appearance transfer quality. This approach enables more consistent and objective evaluations compared to traditional methods.
+1.	To mitigate color saturation issues, we explore two main methods: a) Post-processing using Reinhard's Color Transfer algorithm to adjust the color characteristics of the output image. b) Developing a data-dependent β contrast factor based on entropy calculations to precisely control the contrast operation and prevent saturation effects.
+
+2.	To objectively evaluate appearance transfer quality, we propose a novel evaluation framework that: a) Employs segmentation models, such as SAM2, to evaluate structure preservation using Intersection over Union (IOU). b) Utilizes cosine similarity between high-level features extracted using CLIP to assess structural similarity. c) Evaluates artistic style transfer quality using Gram matrices derived from VGG-19.
 
 ## Methodology
+
+### Post-Processing Technique: Reinhard's Color Transfer
+Reinhard's Color Transfer method was implemented as a post-processing step. This technique operates in the LAB color space, transferring color characteristics from a target image to a source image. 
+To use the Reinhard Color Transfer method, run the saturation_correction.py script:
+python saturation_correction.py --source <path_to_source_image> --target <path_to_target_image> --output <path_to_output_image>
+
+
+### Dynamic Parameter Adjustment
+
+A novel data-dependent β contrast factor was developed to refine the contrast operation and prevent saturation effects. This method leverages the statistical information contained in the attention map A, where each row represents the attention weights of a single spatial location in relation to all other spatial locations.
+To use Dynamic Parameter Adjustment via the data-dependent β contrast factor, replace the original attention_utils.py in your project with the one provided in this repository, which includes the dynamic contrast adjustment functionality.
+
 
 ### Structure Preservation Evaluation
 
